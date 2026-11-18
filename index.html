@@ -92,6 +92,8 @@
   #permProto [data-panel="feature"] .pp-unified-tools { margin-left:auto; flex-wrap:nowrap; gap:14px; }
   #permProto .pp-feature-column-head { min-height:40px; position:sticky; z-index:23; top:calc(56px + var(--pp-detail-sticky-height) + 58px); border-top:1px solid var(--pp-border); border-bottom:1px solid var(--pp-border); background:#f8faff; color:var(--pp-text); font-size:12px; font-weight:500; }
   #permProto .pp-feature-column-head span:not(:first-child) { text-align:center; }
+  #permProto .pp-feature-column-head > span:nth-child(n+2) { align-self:stretch; display:grid; place-items:center; border-left:1px solid #e1e6ee; }
+  #permProto .pp-feature-column-head > span:last-child { border-right:1px solid #e1e6ee; }
   #permProto .pp-unified-tree .pp-unified-actions { display:block; padding:0; border-bottom:0; background:#fcfdff; }
   #permProto .pp-unified-tree .pp-feature-action-grid { width:100%; display:block; overflow:visible; padding:0; }
   #permProto .pp-feature-permission-row, #permProto .pp-feature-field-row { min-height:36px; border-bottom:1px solid #edf0f4; }
@@ -105,6 +107,8 @@
   #permProto .pp-feature-field-group-title small { color:var(--pp-muted); font-size:10px; }
   #permProto .pp-feature-field-name .pp-permission-type { display:none; }
   #permProto .pp-feature-field-option { min-height:34px; position:relative; display:grid; place-items:center; }
+  #permProto .pp-feature-field-row > .pp-feature-field-option { align-self:stretch; border-left:1px solid #e1e6ee; }
+  #permProto .pp-feature-field-row > .pp-feature-field-option:last-child { border-right:1px solid #e1e6ee; }
   #permProto .pp-feature-field-option input { width:16px; height:16px; margin:0; }
   #permProto .pp-feature-field-option.pp-disabled { cursor:not-allowed; }
   #permProto .pp-feature-field-option.pp-disabled input { opacity:.42; }
@@ -3566,11 +3570,15 @@
       const meta = permissionTypeMeta(name);
       if (meta.type === '字段') {
         const setting = currentFeatureFieldSetting(id, key);
+        const exportUnavailable = meta.text === '总利润/利润率';
+        if (exportUnavailable) setting.exportable = false;
         const option = (property, label) => {
           const maskedSearchDisabled = property === 'searchable' && setting.masked;
-          const disabled = state.detailReadOnly || maskedSearchDisabled;
-          const tooltip = maskedSearchDisabled ? '该字段已开启脱敏，查询条件默认不显示' : '';
-          return `<label class="pp-feature-field-option${disabled ? ' pp-disabled' : ''}"${tooltip ? ` data-tooltip="${tooltip}"` : ''}><input type="checkbox" data-feature-field-key="${key}" data-feature-field-setting="${property}" data-module-id="${id}" aria-label="${escapeHtml(meta.text)}${label}" ${setting[property] ? 'checked' : ''} ${disabled ? 'disabled' : ''}></label>`;
+          const exportDisabled = property === 'exportable' && exportUnavailable;
+          const disabled = state.detailReadOnly || maskedSearchDisabled || exportDisabled;
+          const tooltip = exportDisabled ? '该字段不在列表，无法导出' : maskedSearchDisabled ? '该字段已开启脱敏，查询条件默认不显示' : '';
+          const checked = exportDisabled ? false : setting[property];
+          return `<label class="pp-feature-field-option${disabled ? ' pp-disabled' : ''}"${tooltip ? ` data-tooltip="${tooltip}"` : ''}><input type="checkbox" data-feature-field-key="${key}" data-feature-field-setting="${property}" data-module-id="${id}" aria-label="${escapeHtml(meta.text)}${label}" ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''}></label>`;
         };
         return `<div class="pp-feature-field-row"><span class="pp-feature-field-name pp-permission-name">${renderPermissionName(name)}</span>${option('masked','脱敏')}${option('searchable','查询条件')}${option('exportable','导出')}</div>`;
       }
