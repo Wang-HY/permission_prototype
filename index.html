@@ -8,6 +8,28 @@
   #permProto .pp-unified-actions .pp-feature-action-grid .pp-check { gap:8px; }
   #permProto .pp-feature-action-grid .pp-permission-name { gap:8px; }
   #permProto .pp-feature-type-row .pp-feature-action-grid { flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden; padding-bottom:1px; }
+  #permProto .pp-sidebar { position:sticky; top:56px; align-self:start; height:calc(100vh - 56px); overflow-y:auto; }
+  #permProto .pp-role-list-table th:first-child, #permProto .pp-role-list-table td:first-child, #permProto .pp-user-table th:first-child, #permProto .pp-user-table td:first-child { display:none; }
+  #permProto .pp-role-list-table { min-width:980px; }
+  #permProto .pp-role-list-table th:nth-child(2) { width:14%!important; }
+  #permProto .pp-role-list-table th:nth-child(3) { width:17%!important; }
+  #permProto .pp-role-list-table th:nth-child(4), #permProto .pp-role-list-table th:nth-child(5) { width:15%!important; }
+  #permProto .pp-role-list-table th:nth-child(6) { width:9%!important; }
+  #permProto .pp-role-list-table th:nth-child(7) { width:8%!important; }
+  #permProto .pp-role-list-table th:nth-child(8) { width:22%!important; }
+  #permProto .pp-user-table { min-width:1120px!important; table-layout:fixed; }
+  #permProto .pp-user-table th:nth-child(2) { width:96px!important; }
+  #permProto .pp-user-table th:nth-child(3) { width:140px!important; }
+  #permProto .pp-user-table th:nth-child(4) { width:210px!important; }
+  #permProto .pp-user-table th:nth-child(5) { width:170px!important; }
+  #permProto .pp-user-table th:nth-child(6) { width:88px!important; text-align:left!important; }
+  #permProto .pp-user-table th:nth-child(7) { width:210px!important; text-align:left!important; }
+  #permProto .pp-user-table th:nth-child(8) { width:100px!important; text-align:left!important; }
+  #permProto .pp-user-status { display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+  #permProto .pp-user-status i { width:7px; height:7px; flex:0 0 auto; border-radius:50%; background:currentColor; }
+  #permProto .pp-user-status-active { color:#188255; }
+  #permProto .pp-user-status-left { color:var(--pp-muted); }
+  #permProto .pp-user-login { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   #permProto .pp-user-detail-search { position:relative; display:block; padding:8px 9px; border-bottom:1px solid var(--pp-border); background:var(--pp-surface); }
   #permProto .pp-user-detail-search svg { position:absolute; top:17px; left:18px; width:14px; height:14px; color:var(--pp-muted); pointer-events:none; }
   #permProto .pp-user-detail-search input { width:100%; height:32px; padding:0 10px 0 30px; border:1px solid var(--pp-border); border-radius:3px; outline:none; background:#fff; color:var(--pp-text); font-size:12px; }
@@ -19,35 +41,82 @@
   #permProto .pp-role-detail-sidebar > header { min-height:42px; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 12px; border-bottom:1px solid var(--pp-border); background:var(--pp-surface-soft); }
   #permProto .pp-role-detail-sidebar > header strong { font-size:13px; font-weight:500; }
   #permProto .pp-role-detail-sidebar > header span { color:var(--pp-muted); font-size:11px; }
-  #permProto .pp-role-detail-list { max-height:calc(100vh - 135px); overflow:auto; }
+  #permProto .pp-role-detail-search { position:relative; display:block; padding:8px 9px; border-bottom:1px solid var(--pp-border); background:var(--pp-surface); }
+  #permProto .pp-role-detail-search svg { position:absolute; top:17px; left:18px; width:14px; height:14px; color:var(--pp-muted); pointer-events:none; }
+  #permProto .pp-role-detail-search input { width:100%; height:32px; padding:0 10px 0 30px; border:1px solid var(--pp-border); border-radius:3px; outline:none; background:#fff; color:var(--pp-text); font-size:12px; }
+  #permProto .pp-role-detail-search input:focus { border-color:#8eabe0; box-shadow:0 0 0 2px rgba(35,63,116,.08); }
+  #permProto .pp-role-detail-list { max-height:calc(100vh - 180px); overflow:auto; }
   #permProto .pp-role-detail-section { border-bottom:1px solid #edf0f4; }
-  #permProto .pp-role-detail-head { min-height:44px; display:grid; grid-template-columns:26px minmax(0,1fr) 30px; align-items:center; gap:2px; padding:4px 6px; }
+  #permProto .pp-role-detail-head { min-height:44px; display:grid; grid-template-columns:26px minmax(0,1fr) 30px; align-items:center; gap:2px; padding:4px 6px; cursor:pointer; }
   #permProto .pp-role-detail-section.pp-active > .pp-role-detail-head { background:var(--pp-primary-soft); }
-  #permProto .pp-role-detail-toggle, #permProto .pp-role-detail-add, #permProto .pp-role-detail-remove { display:grid; place-items:center; padding:0; border:0; background:transparent; color:var(--pp-muted); }
+  #permProto .pp-role-detail-toggle, #permProto .pp-role-detail-edit { display:grid; place-items:center; padding:0; border:0; background:transparent; color:var(--pp-muted); }
   #permProto .pp-role-detail-toggle { width:26px; height:30px; }
-  #permProto .pp-role-detail-toggle svg { width:15px; height:15px; }
+  #permProto .pp-role-detail-chevron { display:block; color:var(--pp-muted); font-size:18px; line-height:1; }
   #permProto .pp-role-detail-switch { min-width:0; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:6px 4px; border:0; background:transparent; color:var(--pp-text); text-align:left; }
   #permProto .pp-role-detail-switch strong { min-width:0; overflow:hidden; font-size:12px; font-weight:500; text-overflow:ellipsis; white-space:nowrap; }
   #permProto .pp-role-detail-switch small { flex:0 0 auto; color:var(--pp-muted); font-size:10px; }
-  #permProto .pp-role-detail-add { width:30px; height:30px; color:var(--pp-primary); }
-  #permProto .pp-role-detail-add:hover { background:var(--pp-primary-soft); }
-  #permProto .pp-role-detail-add svg, #permProto .pp-role-detail-remove svg { width:15px; height:15px; }
-  #permProto .pp-role-detail-members { border-top:1px solid #edf0f4; background:#fbfcff; }
-  #permProto .pp-role-detail-member { min-height:68px; display:grid; grid-template-columns:minmax(0,1fr) 28px; align-items:center; gap:6px; padding:7px 7px 7px 38px; border-bottom:1px solid #f0f2f6; }
+  #permProto .pp-role-detail-edit { width:30px; height:30px; color:#7c899d; }
+  #permProto .pp-role-detail-edit:hover { background:#f2f5f9; color:#4d5d73; }
+  #permProto .pp-role-detail-pencil { width:14px; height:14px; display:block; color:currentColor; stroke-width:1.6; }
+  #permProto .pp-role-detail-members { margin-left:24px; border-top:1px solid #edf0f4; border-left:1px solid #dbe2ed; background:#fbfcff; }
+  #permProto .pp-role-detail-member { min-height:58px; display:grid; grid-template-columns:minmax(0,1fr); align-items:center; gap:6px; padding:7px 7px 7px 44px; border-bottom:1px solid #f0f2f6; }
   #permProto .pp-role-detail-member:last-child { border-bottom:0; }
   #permProto .pp-role-detail-member > div { min-width:0; display:grid; gap:2px; }
+  #permProto .pp-role-detail-member-identity { min-width:0; display:flex; align-items:center; gap:7px; }
+  #permProto .pp-role-detail-member-identity strong { flex:0 0 auto; }
+  #permProto .pp-role-detail-member-identity small { min-width:0; }
   #permProto .pp-role-detail-member strong { font-size:12px; font-weight:500; }
   #permProto .pp-role-detail-member small { overflow:hidden; color:var(--pp-muted); font-size:10px; line-height:1.35; text-overflow:ellipsis; white-space:nowrap; }
-  #permProto .pp-role-detail-remove { width:28px; height:28px; }
-  #permProto .pp-role-detail-remove:hover { color:var(--pp-red); background:var(--pp-red-soft); }
-  #permProto .pp-role-detail-member-empty { padding:14px 12px 14px 38px; color:var(--pp-muted); font-size:11px; }
+  #permProto .pp-role-detail-member-empty { padding:14px 12px 14px 44px; color:var(--pp-muted); font-size:11px; }
+  #permProto .pp-role-member-manage.pp-member-editor-open { position:fixed; z-index:80; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; background:rgba(22,31,50,.34); }
+  #permProto .pp-role-member-manage.pp-member-editor-open > b { width:min(480px,calc(100vw - 32px)); padding:16px 18px 10px; border:1px solid var(--pp-border); border-bottom:0; border-radius:4px 4px 0 0; background:var(--pp-surface); color:var(--pp-text); font-size:15px; font-weight:500; }
+  #permProto .pp-role-member-manage.pp-member-editor-open .pp-role-member-picker { width:min(480px,calc(100vw - 32px)); padding:0 18px 18px; border:1px solid var(--pp-border); border-top:0; border-radius:0 0 4px 4px; background:var(--pp-surface); box-shadow:0 16px 40px rgba(31,45,72,.18); }
+  #permProto .pp-role-member-manage.pp-member-editor-open .pp-role-member-picker-menu { position:static; width:100%; min-width:0; margin-top:6px; box-shadow:none; }
   #permProto .pp-detail-view.pp-role-detail-active .pp-detail-actions { left:396px; }
+  #permProto .pp-role-title-input { width:min(360px,55vw); height:38px; padding:2px 7px; border:1px solid transparent; border-radius:3px; outline:none; background:transparent; color:var(--pp-text); font-size:22px; font-weight:500; }
+  #permProto .pp-user-detail-active .pp-role-title-input[readonly] { width:auto; min-width:0; max-width:100%; padding-right:0; padding-left:0; border-color:transparent; pointer-events:none; }
+  #permProto .pp-user-detail-identity { width:100%; min-width:0; display:flex; align-items:center; gap:7px; }
+  #permProto .pp-user-detail-identity strong { flex:0 0 auto; }
+  #permProto .pp-user-detail-identity small { min-width:0; }
+  #permProto .pp-user-detail-roles { width:100%; overflow:hidden; color:var(--pp-muted); font-size:11px; line-height:1.45; text-overflow:ellipsis; white-space:nowrap; }
+  #permProto .pp-role-title-input:not([readonly]):hover { border-color:var(--pp-border); background:var(--pp-surface); }
+  #permProto .pp-role-title-input:not([readonly]):focus { border-color:#8eabe0; background:var(--pp-surface); box-shadow:0 0 0 2px rgba(35,63,116,.08); }
+  #permProto #ppRoleStatusToggle { min-height:30px; padding:4px 7px; border:1px solid transparent; border-radius:3px; background:transparent; cursor:pointer; }
+  #permProto #ppRoleStatusToggle:hover { border-color:var(--pp-border); background:var(--pp-surface); }
+  #permProto #ppRoleStatusToggle.pp-stopped { color:var(--pp-red); }
+  #permProto #ppRoleStatusToggle.pp-stopped span { background:var(--pp-red); }
+  #permProto .pp-feature-column-head, #permProto .pp-feature-permission-row, #permProto .pp-feature-field-row { min-width:760px; display:grid; grid-template-columns:minmax(300px,1fr) 132px 104px 116px; align-items:center; padding:0 20px; }
+  #permProto [data-panel="feature"] .pp-unified-toolbar { justify-content:space-between; flex-wrap:nowrap; gap:18px; border-bottom:0; }
+  #permProto [data-panel="feature"] .pp-unified-title { flex:0 0 auto; }
+  #permProto [data-panel="feature"] .pp-unified-tools { margin-left:auto; flex-wrap:nowrap; gap:14px; }
+  #permProto .pp-feature-column-head { min-height:40px; position:sticky; z-index:23; top:calc(56px + var(--pp-detail-sticky-height) + 58px); border-top:1px solid var(--pp-border); border-bottom:1px solid var(--pp-border); background:#f8faff; color:var(--pp-text); font-size:12px; font-weight:500; }
+  #permProto .pp-feature-column-head span:not(:first-child) { text-align:center; }
+  #permProto .pp-unified-tree .pp-unified-actions { display:block; padding:0; border-bottom:0; background:#fcfdff; }
+  #permProto .pp-unified-tree .pp-feature-action-grid { width:100%; display:block; overflow:visible; padding:0; }
+  #permProto .pp-feature-permission-row, #permProto .pp-feature-field-row { min-height:36px; border-bottom:1px solid #edf0f4; }
+  #permProto .pp-feature-permission-main, #permProto .pp-feature-field-name { min-width:0; display:flex; align-items:center; gap:8px; font-size:12px; }
+  #permProto .pp-feature-permission-main { width:max-content; max-width:calc(100% - 52px - var(--tree-depth) * 26px); justify-self:start; margin-left:calc(52px + var(--tree-depth) * 26px); padding:6px 8px; }
+  #permProto .pp-feature-field-name { padding:6px 8px 6px calc(52px + var(--tree-depth) * 26px); }
+  #permProto .pp-feature-permission-main input { flex:0 0 auto; margin:0; }
+  #permProto .pp-feature-field-name .pp-permission-type { display:none; }
+  #permProto .pp-feature-field-option { min-height:34px; position:relative; display:grid; place-items:center; }
+  #permProto .pp-feature-field-option input { width:16px; height:16px; margin:0; }
+  #permProto .pp-feature-field-option.pp-disabled { cursor:not-allowed; }
+  #permProto .pp-feature-field-option.pp-disabled input { opacity:.42; }
+  #permProto .pp-feature-field-option[data-tooltip] { cursor:help; }
+  #permProto .pp-feature-field-option[data-tooltip]::after { content:attr(data-tooltip); position:absolute; z-index:70; left:50%; bottom:calc(100% + 7px); width:max-content; max-width:260px; padding:7px 9px; border-radius:3px; background:#26344f; color:#fff; box-shadow:0 6px 18px rgba(31,45,72,.2); font-size:11px; font-weight:400; line-height:1.45; white-space:normal; opacity:0; visibility:hidden; transform:translate(-50%,3px); transition:.15s ease; pointer-events:none; }
+  #permProto .pp-feature-field-option[data-tooltip]::before { content:""; position:absolute; z-index:71; left:50%; bottom:calc(100% + 3px); width:7px; height:7px; background:#26344f; opacity:0; visibility:hidden; transform:translateX(-50%) rotate(45deg); transition:.15s ease; pointer-events:none; }
+  #permProto .pp-feature-field-option[data-tooltip]:hover::after, #permProto .pp-feature-field-option[data-tooltip]:hover::before { opacity:1; visibility:visible; }
+  #permProto .pp-feature-permission-row:hover, #permProto .pp-feature-field-row:hover { background:#f7f9fd; }
   @media (max-width:800px) {
     #permProto .pp-user-detail-sidebar .pp-user-detail-list { max-height:150px; }
     #permProto .pp-detail-view.pp-role-detail-active { grid-template-columns:1fr; }
     #permProto .pp-role-detail-sidebar { position:relative; top:auto; max-height:320px; }
     #permProto .pp-role-detail-list { max-height:276px; }
     #permProto .pp-detail-view.pp-role-detail-active .pp-detail-actions { left:10px; }
+    #permProto [data-panel="feature"] .pp-unified-toolbar { align-items:flex-start; flex-direction:column; gap:10px; }
+    #permProto [data-panel="feature"] .pp-unified-tools { width:100%; margin-left:0; flex-wrap:wrap; gap:10px 14px; }
+    #permProto .pp-feature-column-head, #permProto .pp-feature-permission-row, #permProto .pp-feature-field-row { grid-template-columns:minmax(280px,1fr) 120px 96px 108px; }
   }
 </style>
 </head>
@@ -97,15 +166,15 @@
           <table class="pp-role-table pp-role-list-table">
             <thead><tr><th>排序编码</th><th>角色名称</th><th>单据权限</th><th>应收费用权限</th><th>应付费用权限</th><th>机构级别</th><th>状态</th><th>操作</th></tr></thead>
             <tbody id="ppRoleBody">
-              <tr data-role="B2B客服" data-org="部门"><td>1</td><td><strong>B2B客服</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-role">编辑</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
-              <tr data-role="海外操作经理" data-org="部门"><td>1</td><td><strong>海外操作经理</strong></td><td>当前组织及下级数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-role">编辑</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
-              <tr data-role="海外操作" data-org="部门"><td>1</td><td><strong>海外操作</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-role">编辑</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
-              <tr data-role="海运客服" data-org="部门"><td>1</td><td><strong>海运客服</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-role">编辑</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
-              <tr data-role="客服经理" data-org="部门"><td>1</td><td><strong>客服经理</strong></td><td>当前组织及下级数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-role">编辑</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
-              <tr data-role="客服助理" data-org="部门"><td>1</td><td><strong>客服助理</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-role">编辑</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
-              <tr data-role="文件操作" data-org="部门"><td>1</td><td><strong>文件操作</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-role">编辑</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
-              <tr data-role="销售人员" data-org="部门"><td>1</td><td><strong>销售人员</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-role">编辑</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
-              <tr data-role="系统管理员（业务）" data-org="子公司"><td>1</td><td><strong>系统管理员（业务）</strong></td><td>全部数据权限</td><td>子公司</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-role">编辑</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
+              <tr data-role="B2B客服" data-org="部门"><td>1</td><td><strong>B2B客服</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
+              <tr data-role="海外操作经理" data-org="部门"><td>1</td><td><strong>海外操作经理</strong></td><td>当前组织及下级数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
+              <tr data-role="海外操作" data-org="部门"><td>1</td><td><strong>海外操作</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
+              <tr data-role="海运客服" data-org="部门"><td>1</td><td><strong>海运客服</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
+              <tr data-role="客服经理" data-org="部门"><td>1</td><td><strong>客服经理</strong></td><td>当前组织及下级数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
+              <tr data-role="客服助理" data-org="部门"><td>1</td><td><strong>客服助理</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
+              <tr data-role="文件操作" data-org="部门"><td>1</td><td><strong>文件操作</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
+              <tr data-role="销售人员" data-org="部门"><td>1</td><td><strong>销售人员</strong></td><td>当前用户数据权限</td><td>部门</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
+              <tr data-role="系统管理员（业务）" data-org="子公司"><td>1</td><td><strong>系统管理员（业务）</strong></td><td>全部数据权限</td><td>子公司</td><td><span class="pp-enabled"><i></i>启用</span></td><td class="pp-actions"><button type="button">复制新增</button><button type="button" class="pp-edit-permission">权限编辑</button><button type="button" class="pp-view-members">人员查看</button><button type="button">删除</button></td></tr>
             </tbody>
           </table>
           <div class="pp-empty" id="ppRoleEmpty" hidden><i data-lucide="search-x" aria-hidden="true"></i><span>未找到匹配的角色</span></div>
@@ -122,18 +191,18 @@
           </div>
           <div class="pp-role-table-wrap pp-user-table-wrap">
             <table class="pp-role-table pp-user-table">
-              <thead><tr><th class="pp-select-cell"><input type="checkbox" id="ppUserSelectAll" aria-label="全选用户"></th><th><span class="pp-sortable">员工姓名<i data-lucide="chevrons-up-down" aria-hidden="true"></i></span></th><th><span class="pp-sortable">所属组织<i data-lucide="chevrons-up-down" aria-hidden="true"></i></span></th><th><span class="pp-sortable">所属公司<i data-lucide="chevrons-up-down" aria-hidden="true"></i></span></th><th><span class="pp-sortable">角色<i data-lucide="chevrons-up-down" aria-hidden="true"></i></span></th><th>功能权限</th><th>字段列权限</th><th>导出字段权限</th><th>操作</th></tr></thead>
+              <thead><tr><th class="pp-select-cell"><input type="checkbox" id="ppUserSelectAll" aria-label="全选用户"></th><th><span class="pp-sortable">员工姓名<i data-lucide="chevrons-up-down" aria-hidden="true"></i></span></th><th><span class="pp-sortable">所属组织<i data-lucide="chevrons-up-down" aria-hidden="true"></i></span></th><th><span class="pp-sortable">所属公司<i data-lucide="chevrons-up-down" aria-hidden="true"></i></span></th><th><span class="pp-sortable">角色<i data-lucide="chevrons-up-down" aria-hidden="true"></i></span></th><th>员工状态</th><th>登录账号</th><th>操作</th></tr></thead>
               <tbody id="ppUserBody">
-                <tr data-user="陈一" data-user-id="WYD0901" data-login="chenyi" data-dept="宁波客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择陈一"></td><td><strong>陈一</strong></td><td>宁波客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">系统管理员</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
-                <tr data-user="李四" data-user-id="WYD0103" data-login="lisi" data-dept="上海客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择李四"></td><td><strong>李四</strong></td><td>上海客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">销售经理</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
-                <tr data-user="张三" data-user-id="WYD0211" data-login="zhangsan" data-dept="深圳客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择张三"></td><td><strong>张三</strong></td><td>深圳客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">销售</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
-                <tr data-user="刘敏" data-user-id="WYD0218" data-login="liumin" data-dept="拼箱操作组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择刘敏"></td><td><strong>刘敏</strong></td><td>拼箱操作组 / 宁波拼箱组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">航线操作</span><span class="pp-role-tag">客服</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
-                <tr data-user="孙八" data-user-id="WYD0305" data-login="sunba" data-dept="拼箱操作组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择孙八"></td><td><strong>孙八</strong></td><td>拼箱操作组 / 上海拼箱组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">销售</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
-                <tr data-user="王五" data-user-id="WYD0402" data-login="wangwu" data-dept="海外操作组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择王五"></td><td><strong>王五</strong></td><td>海外操作组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">操作</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
-                <tr data-user="周九" data-user-id="WYD0407" data-login="zhoujiu" data-dept="拼箱操作组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择周九"></td><td><strong>周九</strong></td><td>拼箱操作组 / 深圳拼箱组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">操作</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
-                <tr data-user="赵六" data-user-id="WYD0501" data-login="zhaoliu" data-dept="深圳客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择赵六"></td><td><strong>赵六</strong></td><td>深圳客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">客服</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
-                <tr data-user="钱七" data-user-id="WYD0603" data-login="qianqi" data-dept="财务组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择钱七"></td><td><strong>钱七</strong></td><td>财务组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">财务</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
-                <tr data-user="郑十一" data-user-id="WYD0219" data-login="zhengshiyi" data-dept="宁波客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择郑十一"></td><td><strong>郑十一</strong></td><td>宁波客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-no-role">未分配角色</span></td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="陈一" data-user-id="WYD0901" data-login="chenyi" data-dept="宁波客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择陈一"></td><td><strong>陈一</strong></td><td>宁波客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">系统管理员</span></td><td><span class="pp-user-status pp-user-status-active"><i></i>在职</span></td><td class="pp-user-login">chenyi@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="李四" data-user-id="WYD0103" data-login="lisi" data-dept="上海客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择李四"></td><td><strong>李四</strong></td><td>上海客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">销售经理</span></td><td><span class="pp-user-status pp-user-status-active"><i></i>在职</span></td><td class="pp-user-login">lisi@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="张三" data-user-id="WYD0211" data-login="zhangsan" data-dept="深圳客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择张三"></td><td><strong>张三</strong></td><td>深圳客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">销售</span></td><td><span class="pp-user-status pp-user-status-active"><i></i>在职</span></td><td class="pp-user-login">zhangsan@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="刘敏" data-user-id="WYD0218" data-login="liumin" data-dept="拼箱操作组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择刘敏"></td><td><strong>刘敏</strong></td><td>拼箱操作组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">航线操作</span><span class="pp-role-tag">客服</span></td><td><span class="pp-user-status pp-user-status-active"><i></i>在职</span></td><td class="pp-user-login">liumin@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="孙八" data-user-id="WYD0305" data-login="sunba" data-dept="拼箱操作组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择孙八"></td><td><strong>孙八</strong></td><td>拼箱操作组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">销售</span></td><td><span class="pp-user-status pp-user-status-active"><i></i>在职</span></td><td class="pp-user-login">sunba@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="王五" data-user-id="WYD0402" data-login="wangwu" data-dept="海外操作组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择王五"></td><td><strong>王五</strong></td><td>海外操作组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">操作</span></td><td><span class="pp-user-status pp-user-status-active"><i></i>在职</span></td><td class="pp-user-login">wangwu@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="周九" data-user-id="WYD0407" data-login="zhoujiu" data-dept="拼箱操作组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择周九"></td><td><strong>周九</strong></td><td>拼箱操作组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">操作</span></td><td><span class="pp-user-status pp-user-status-active"><i></i>在职</span></td><td class="pp-user-login">zhoujiu@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="赵六" data-user-id="WYD0501" data-login="zhaoliu" data-dept="深圳客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择赵六"></td><td><strong>赵六</strong></td><td>深圳客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">客服</span></td><td><span class="pp-user-status pp-user-status-active"><i></i>在职</span></td><td class="pp-user-login">zhaoliu@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="钱七" data-user-id="WYD0603" data-login="qianqi" data-dept="财务组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择钱七"></td><td><strong>钱七</strong></td><td>财务组</td><td>宁波网优达集团有限公司</td><td><span class="pp-role-tag">财务</span></td><td><span class="pp-user-status pp-user-status-active"><i></i>在职</span></td><td class="pp-user-login">qianqi@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
+                <tr data-user="郑十一" data-user-id="WYD0219" data-login="zhengshiyi" data-dept="宁波客服组"><td class="pp-select-cell"><input type="checkbox" data-user-select aria-label="选择郑十一"></td><td><strong>郑十一</strong></td><td>宁波客服组</td><td>宁波网优达集团有限公司</td><td><span class="pp-no-role">未分配角色</span></td><td><span class="pp-user-status pp-user-status-left"><i></i>离职</span></td><td class="pp-user-login">zhengshiyi@wydgroup.com</td><td class="pp-actions"><button type="button" class="pp-view-permission">查看权限</button></td></tr>
               </tbody>
             </table>
             <div class="pp-empty" id="ppUserEmpty" hidden><i data-lucide="search-x" aria-hidden="true"></i><span>未找到匹配的用户</span></div>
@@ -144,13 +213,12 @@
 
       <section class="pp-detail-view" id="ppDetailView" hidden>
       <aside class="pp-user-detail-sidebar" id="ppUserDetailSidebar" hidden><header><strong>全部用户</strong><span id="ppUserDetailCount">0 人</span></header><label class="pp-user-detail-search"><i data-lucide="search" aria-hidden="true"></i><input type="search" id="ppUserDetailSearch" placeholder="搜索用户或角色" aria-label="搜索用户或角色"></label><div class="pp-user-detail-list" id="ppUserDetailList"></div><div class="pp-user-detail-empty" id="ppUserDetailEmpty" hidden>未找到匹配的用户或角色</div></aside>
-      <aside class="pp-role-detail-sidebar" id="ppRoleDetailSidebar" hidden><header><strong>全部角色</strong><span id="ppRoleDetailCount">0 个</span></header><div class="pp-role-detail-list" id="ppRoleDetailList"></div></aside>
+      <aside class="pp-role-detail-sidebar" id="ppRoleDetailSidebar" hidden><header><strong>全部角色</strong><span id="ppRoleDetailCount">0 个</span></header><label class="pp-role-detail-search"><i data-lucide="search" aria-hidden="true"></i><input type="search" id="ppRoleDetailSearch" placeholder="搜索角色或员工" aria-label="搜索角色或员工"></label><div class="pp-role-detail-list" id="ppRoleDetailList"></div></aside>
       <div class="pp-detail-content">
       <div class="pp-detail-sticky-head">
       <section class="pp-role-head">
         <div>
-          <div class="pp-title-row"><h1 id="ppRoleTitle">B2B客服</h1><span class="pp-status"><span></span><b id="ppDetailModeStatus">启用</b></span></div>
-          <div class="pp-role-member-manage" id="ppRoleMemberManage" hidden><b>角色用户</b><div class="pp-role-member-picker" id="ppRoleMemberPicker"><button type="button" class="pp-role-member-picker-trigger" id="ppRoleMemberPickerTrigger" aria-haspopup="true" aria-expanded="false"><span class="pp-role-member-picker-summary" id="ppRoleMemberPickerSummary"><span class="pp-role-member-picker-placeholder">选择用户</span></span><i aria-hidden="true"></i></button><div class="pp-role-member-picker-menu" id="ppRoleMemberPickerMenu" hidden><label class="pp-role-member-picker-search"><span aria-hidden="true">⌕</span><input type="search" id="ppRoleMemberPickerSearch" placeholder="搜索用户" aria-label="搜索用户"></label><div class="pp-role-member-picker-options" id="ppRoleMemberPickerOptions"></div><footer><span id="ppRoleMemberPickerCount">已选择 0 人</span><div><button type="button" id="ppCancelRoleMemberPicker">取消</button><button type="button" id="ppConfirmRoleMemberPicker">确定</button></div></footer></div></div></div>
+          <div class="pp-title-row"><button type="button" class="pp-status" id="ppRoleStatusToggle" aria-label="切换角色启用状态"><span></span><b id="ppDetailModeStatus">启用</b></button><input type="text" class="pp-role-title-input" id="ppRoleTitle" value="B2B客服" maxlength="20" aria-label="角色名称"></div>
           <div class="pp-user-context" id="ppUserContext" hidden>
             <span><b>所属组织</b><em id="ppUserOrganization">-</em></span>
             <span><b>所属公司</b><em id="ppUserCompany">-</em></span>
@@ -162,8 +230,6 @@
       <div class="pp-tabs" role="tablist" aria-label="角色权限配置">
         <button type="button" class="pp-tab pp-selected" role="tab" aria-selected="true" data-tab="feature"><span data-tab-label>功能权限</span></button>
         <button type="button" class="pp-tab" role="tab" aria-selected="false" data-tab="data"><span data-tab-label>数据行权限</span></button>
-        <button type="button" class="pp-tab" role="tab" aria-selected="false" data-tab="field"><span data-tab-label>字段列权限</span></button>
-        <button type="button" class="pp-tab" role="tab" aria-selected="false" data-tab="export"><span data-tab-label>导出字段权限</span></button>
       </div>
       </div>
 
@@ -190,6 +256,7 @@
               <label><input type="radio" name="ppDocumentPermission" value="user" checked>当前用户数据权限</label>
               <label><input type="radio" name="ppDocumentPermission" value="org">当前组织数据权限</label>
               <label><input type="radio" name="ppDocumentPermission" value="org-and-children">当前组织及下级数据权限</label>
+              <label><input type="radio" name="ppDocumentPermission" value="company">当前所属公司数据权限</label>
               <label><input type="radio" name="ppDocumentPermission" value="all">全部数据权限</label>
               <label><input type="radio" name="ppDocumentPermission" value="custom">自定义数据权限</label>
             </div>
@@ -261,6 +328,8 @@
       </div>
       </div>
       </section>
+
+      <div class="pp-role-member-manage" id="ppRoleMemberManage" hidden><b>角色用户</b><div class="pp-role-member-picker" id="ppRoleMemberPicker"><button type="button" class="pp-role-member-picker-trigger" id="ppRoleMemberPickerTrigger" aria-haspopup="true" aria-expanded="false"><span class="pp-role-member-picker-summary" id="ppRoleMemberPickerSummary"><span class="pp-role-member-picker-placeholder">选择用户</span></span><i aria-hidden="true"></i></button><div class="pp-role-member-picker-menu" id="ppRoleMemberPickerMenu" hidden><label class="pp-role-member-picker-search"><span aria-hidden="true">⌕</span><input type="search" id="ppRoleMemberPickerSearch" placeholder="搜索用户" aria-label="搜索用户"></label><div class="pp-role-member-picker-options" id="ppRoleMemberPickerOptions"></div><footer><span id="ppRoleMemberPickerCount">已选择 0 人</span><div><button type="button" id="ppCancelRoleMemberPicker">取消</button><button type="button" id="ppConfirmRoleMemberPicker">确定</button></div></footer></div></div></div>
 
       <div class="pp-modal-layer" id="ppRoleEditModal" hidden>
         <section class="pp-modal pp-role-edit-modal" role="dialog" aria-modal="true" aria-labelledby="ppRoleEditTitle">
@@ -1146,7 +1215,7 @@
 (() => {
   const root = document.getElementById('permProto');
   if (!root) return;
-  const defaults = { dataVersion:6, view: 'list', listMode:'role', detailReadOnly:false, selectedUserRoles:[], selectedRole: 'B2B客服', tab: 'feature', currentModule: 'orderList', currentFieldModule:'settlementTracking', currentExportModule:'settlementTracking', scopes:{ query:'本部门及下级部门', edit:'仅本人负责', delete:'无权限', export:'本部门' }, dataPermissions:{ document:'user', receivable:'module', payable:'module' }, customOrganizations:[], feeSelections:{ receivable:{ modules:['订单'], stages:[] }, payable:{ modules:['订单'], stages:[] } } };
+  const defaults = { dataVersion:7, view: 'list', listMode:'role', detailReadOnly:false, selectedUserRoles:[], selectedRole: 'B2B客服', tab: 'feature', currentModule: 'orderList', currentFieldModule:'settlementTracking', currentExportModule:'settlementTracking', scopes:{ query:'本部门及下级部门', edit:'仅本人负责', delete:'无权限', export:'本部门' }, dataPermissions:{ document:'user', receivable:'module', payable:'module' }, customOrganizations:[], feeSelections:{ receivable:{ modules:['订单'], stages:[] }, payable:{ modules:['订单'], stages:[] } } };
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem('permission-center-tree-prototype') || 'null'); } catch (_) {}
   const resetFeatureExample = !saved || saved.dataVersion !== defaults.dataVersion;
@@ -1449,7 +1518,6 @@
               "title": "费用Tab",
               "actions": [
                 "可否编辑Tab页",
-                "总利润/利润率【字段】",
                 "应收【TAB】",
                 "应收_新增【按钮】",
                 "应收_删除【按钮】",
@@ -1466,7 +1534,8 @@
                 "DC_新增【按钮】",
                 "DC_删除【按钮】",
                 "费用提交【按钮】",
-                "海运费同步【按钮】"
+                "海运费同步【按钮】",
+                "总利润/利润率【字段】"
               ],
               "layout": "fee-groups"
             },
@@ -1722,8 +1791,8 @@
                 "账单推送【按钮】",
                 "费用提交【按钮】",
                 "补录申请【按钮】",
-                "总利润/利润率【字段】",
-                "费用日志"
+                "费用日志",
+                "总利润/利润率【字段】"
               ]
             },
             {
@@ -1943,15 +2012,24 @@
       sections:(node?.children || []).map(child => ({ id:child.id, title:child.title, kind:'menu', entryKey:`menu.${child.id}`, actions:[] }))
     };
   };
+  const isFeatureFieldName = name => /【字段】$/i.test(String(name || ''));
   const featureKeysFor = config => {
     const keys = [];
     config.sections.forEach(section => {
       if (section.entryKey) keys.push(section.entryKey);
-      section.actions.forEach((action, index) => keys.push(`action.${section.id}.${index}`));
+      section.actions.forEach((action, index) => { if (!isFeatureFieldName(action)) keys.push(`action.${section.id}.${index}`); });
       (section.tabs || []).forEach(tab => {
         keys.push(`tab.${section.id}.${tab.id}`);
-        tab.actions.forEach((action, index) => keys.push(`action.${section.id}.${tab.id}.${index}`));
+        tab.actions.forEach((action, index) => { if (!isFeatureFieldName(action)) keys.push(`action.${section.id}.${tab.id}.${index}`); });
       });
+    });
+    return keys;
+  };
+  const featureFieldKeysFor = config => {
+    const keys = [];
+    config.sections.forEach(section => {
+      section.actions.forEach((action, index) => { if (isFeatureFieldName(action)) keys.push(`action.${section.id}.${index}`); });
+      (section.tabs || []).forEach(tab => tab.actions.forEach((action, index) => { if (isFeatureFieldName(action)) keys.push(`action.${section.id}.${tab.id}.${index}`); }));
     });
     return keys;
   };
@@ -1969,18 +2047,36 @@
       featurePermissions[id][key] = savedPermissions[key] ?? (index % 2 === 0);
     });
   });
+  const featureFieldSettings = {};
+  Object.keys(featureNodeMap).forEach(id => {
+    const savedSettings = resetFeatureExample ? {} : state.featureFieldSettings?.[id] || {};
+    featureFieldSettings[id] = {};
+    featureFieldKeysFor(getFeatureConfig(id)).forEach(key => {
+      const saved = savedSettings[key];
+      featureFieldSettings[id][key] = {
+        masked:typeof saved?.masked === 'boolean' ? saved.masked : true,
+        exportable:typeof saved?.exportable === 'boolean' ? saved.exportable : true,
+        searchable:typeof saved?.searchable === 'boolean' ? saved.searchable : false
+      };
+      if (featureFieldSettings[id][key].masked) featureFieldSettings[id][key].searchable = false;
+    });
+  });
   const cloneFeatureProfile = profile => ({
     moduleEnabled:{ ...profile.moduleEnabled },
-    featurePermissions:Object.fromEntries(Object.entries(profile.featurePermissions).map(([id, permissions]) => [id, { ...permissions }]))
+    featurePermissions:Object.fromEntries(Object.entries(profile.featurePermissions).map(([id, permissions]) => [id, { ...permissions }])),
+    featureFieldSettings:Object.fromEntries(Object.entries(profile.featureFieldSettings || {}).map(([id, settings]) => [id, Object.fromEntries(Object.entries(settings).map(([key, value]) => [key, { ...value }]))]))
   });
   const featureProfileCompatible = profile => profile && Object.keys(featureNodeMap).every(id =>
-    typeof profile.moduleEnabled?.[id] === 'boolean' && Object.keys(featurePermissions[id]).every(key => typeof profile.featurePermissions?.[id]?.[key] === 'boolean')
+    typeof profile.moduleEnabled?.[id] === 'boolean'
+      && Object.keys(featurePermissions[id]).every(key => typeof profile.featurePermissions?.[id]?.[key] === 'boolean')
+      && Object.keys(featureFieldSettings[id]).every(key => ['masked','exportable','searchable'].every(setting => typeof profile.featureFieldSettings?.[id]?.[key]?.[setting] === 'boolean'))
   );
-  const baseRoleFeatureProfile = cloneFeatureProfile({ moduleEnabled, featurePermissions });
+  const baseRoleFeatureProfile = cloneFeatureProfile({ moduleEnabled, featurePermissions, featureFieldSettings });
   const makeCustomerAssistantFeatureProfile = () => {
     const profile = {
       moduleEnabled:Object.fromEntries(Object.keys(featureNodeMap).map(id => [id, false])),
-      featurePermissions:Object.fromEntries(Object.keys(featureNodeMap).map(id => [id, Object.fromEntries(Object.keys(featurePermissions[id]).map(key => [key, false]))]))
+      featurePermissions:Object.fromEntries(Object.keys(featureNodeMap).map(id => [id, Object.fromEntries(Object.keys(featurePermissions[id]).map(key => [key, false]))])),
+      featureFieldSettings:Object.fromEntries(Object.keys(featureNodeMap).map(id => [id, Object.fromEntries(Object.entries(featureFieldSettings[id]).map(([key, value]) => [key, { ...value }]))]))
     };
     const descendants = id => (featureNodeMap[id]?.children || []).flatMap(child => [child.id, ...descendants(child.id)]);
     const enableBranch = id => [id, ...descendants(id)].forEach(nodeId => {
@@ -2007,8 +2103,9 @@
     const profile = featureProfileForRole(role);
     Object.keys(moduleEnabled).forEach(id => { moduleEnabled[id] = !!profile.moduleEnabled[id]; });
     Object.entries(featurePermissions).forEach(([id, permissions]) => Object.keys(permissions).forEach(key => { permissions[key] = !!profile.featurePermissions[id]?.[key]; }));
+    Object.entries(featureFieldSettings).forEach(([id, settings]) => Object.keys(settings).forEach(key => { settings[key] = { ...profile.featureFieldSettings[id][key] }; }));
   };
-  const storeRoleFeatureProfile = role => { roleFeaturePermissions[role] = cloneFeatureProfile({ moduleEnabled, featurePermissions }); };
+  const storeRoleFeatureProfile = role => { roleFeaturePermissions[role] = cloneFeatureProfile({ moduleEnabled, featurePermissions, featureFieldSettings }); };
   const fieldPermissions = {};
   const exportPermissions = {};
   const fieldPermissionThresholdByRole = {
@@ -2054,7 +2151,7 @@
   });
 
   const persist = () => {
-    try { localStorage.setItem('permission-center-tree-prototype', JSON.stringify({ ...state, moduleEnabled, featurePermissions, roleFeaturePermissions, fieldPermissions, roleFieldPermissions, exportPermissions })); } catch (_) {}
+    try { localStorage.setItem('permission-center-tree-prototype', JSON.stringify({ ...state, moduleEnabled, featurePermissions, featureFieldSettings, roleFeaturePermissions, fieldPermissions, roleFieldPermissions, exportPermissions })); } catch (_) {}
   };
   let editBaseline = null;
   let userAvailableRoles = [];
@@ -2068,6 +2165,7 @@
     editBaseline = {
       moduleEnabled:{ ...moduleEnabled },
       featurePermissions:Object.fromEntries(Object.entries(featurePermissions).map(([id, permissions]) => [id, { ...permissions }])),
+      featureFieldSettings:Object.fromEntries(Object.entries(featureFieldSettings).map(([id, settings]) => [id, Object.fromEntries(Object.entries(settings).map(([key, value]) => [key, { ...value }]))])),
       fieldPermissions:Object.fromEntries(Object.entries(fieldPermissions).map(([id, permissions]) => [id, [...permissions]])),
       exportPermissions:Object.fromEntries(Object.entries(exportPermissions).map(([id, permissions]) => [id, [...permissions]]))
     };
@@ -2101,6 +2199,9 @@
         Object.keys(moduleEnabled).forEach(id => { moduleEnabled[id] = !!editBaseline.moduleEnabled[id]; });
         Object.entries(featurePermissions).forEach(([id, permissions]) => Object.keys(permissions).forEach(key => {
           permissions[key] = !!editBaseline.featurePermissions[id]?.[key];
+        }));
+        Object.entries(featureFieldSettings).forEach(([id, settings]) => Object.keys(settings).forEach(key => {
+          settings[key] = { ...editBaseline.featureFieldSettings[id][key] };
         }));
       }
       renderFeatureTree();
@@ -2210,7 +2311,7 @@
   };
   $$('tr[data-role]', $('#ppRoleBody')).forEach(renderRoleListDataPermissions);
   const dataPermissionRanks = {
-    document:['当前用户数据权限','当前组织数据权限','当前组织及下级数据权限','自定义数据权限','全部数据权限'],
+    document:['当前用户数据权限','当前组织数据权限','当前组织及下级数据权限','当前所属公司数据权限','自定义数据权限','全部数据权限'],
     receivable:['仅本人创建的费用','仅费用所属模块可见','自定义环节','自定义模块','全部'],
     payable:['仅本人创建的费用','仅费用所属模块可见','自定义环节','自定义模块','全部']
   };
@@ -2231,6 +2332,14 @@
     '操作': ['orderList','bookingManagement','spaceReleaseManagement'],
     '财务': ['settlementTracking','reconciliation','posting','invoiceManagement','paymentManagement']
   };
+  const mergeUserFeatureFieldSetting = (roles, id, key) => {
+    const settings = roles.filter(role => (roleFeatureEntryMap[role] || []).includes(id)).map(role => featureProfileForRole(role).featureFieldSettings?.[id]?.[key]).filter(Boolean);
+    return {
+      masked:settings.length ? settings.every(setting => setting.masked) : true,
+      exportable:settings.some(setting => setting.exportable),
+      searchable:settings.some(setting => setting.searchable)
+    };
+  };
   const buildUserFeatureView = roles => {
     const directIds = new Set(roles.flatMap(role => roleFeatureEntryMap[role] || []));
     const visibleIds = new Set(directIds);
@@ -2243,15 +2352,18 @@
     });
     return {
       moduleEnabled:Object.fromEntries(Object.keys(featureNodeMap).map(id => [id, visibleIds.has(id)])),
-      featurePermissions:Object.fromEntries(Object.keys(featureNodeMap).map(id => [id, Object.fromEntries(Object.keys(featurePermissions[id] || {}).map(key => [key, roles.some(role => (roleFeatureEntryMap[role] || []).includes(id) && !!featureProfileForRole(role).featurePermissions[id]?.[key])]))]))
+      featurePermissions:Object.fromEntries(Object.keys(featureNodeMap).map(id => [id, Object.fromEntries(Object.keys(featurePermissions[id] || {}).map(key => [key, roles.some(role => (roleFeatureEntryMap[role] || []).includes(id) && !!featureProfileForRole(role).featurePermissions[id]?.[key])]))])),
+      featureFieldSettings:Object.fromEntries(Object.keys(featureNodeMap).map(id => [id, Object.fromEntries(Object.keys(featureFieldSettings[id] || {}).map(key => [key, mergeUserFeatureFieldSetting(roles, id, key)]))]))
     };
   };
   const cloneUserFeatureView = view => view ? {
     moduleEnabled:{ ...view.moduleEnabled },
-    featurePermissions:Object.fromEntries(Object.entries(view.featurePermissions).map(([id, permissions]) => [id, { ...permissions }]))
+    featurePermissions:Object.fromEntries(Object.entries(view.featurePermissions).map(([id, permissions]) => [id, { ...permissions }])),
+    featureFieldSettings:Object.fromEntries(Object.entries(view.featureFieldSettings || {}).map(([id, settings]) => [id, Object.fromEntries(Object.entries(settings).map(([key, value]) => [key, { ...value }]))]))
   } : null;
   const currentFeatureModuleEnabled = id => state.detailReadOnly && userFeatureView ? !!userFeatureView.moduleEnabled[id] : !!moduleEnabled[id];
   const currentFeaturePermission = (id, key) => state.detailReadOnly && userFeatureView ? !!userFeatureView.featurePermissions[id]?.[key] : !!featurePermissions[id]?.[key];
+  const currentFeatureFieldSetting = (id, key) => state.detailReadOnly && userFeatureView ? (userFeatureView.featureFieldSettings[id]?.[key] || { masked:true, exportable:false, searchable:false }) : (featureFieldSettings[id]?.[key] || { masked:true, exportable:false, searchable:false });
   const setUserRowRoles = (row, roles) => {
     const roleCell = row.cells[4];
     roleCell.innerHTML = roles.length ? roles.map(role => `<span class="pp-role-tag">${role}</span>`).join('') : '<span class="pp-no-role">未分配角色</span>';
@@ -2300,7 +2412,8 @@
       const active = row === activeUserRow;
       const name = row.dataset.user || $('strong', row)?.textContent.trim() || '-';
       const organization = row.cells[2]?.textContent.trim() || '-';
-      return `<button type="button" class="pp-user-detail-item${active ? ' pp-active' : ''}" data-user-detail-id="${escapeHtml(row.dataset.userId || '')}" aria-current="${active ? 'true' : 'false'}"><strong>${escapeHtml(name)}</strong><small title="${escapeHtml(organization)}">${escapeHtml(organization)}</small></button>`;
+      const roles = $$('.pp-role-tag', row).map(tag => tag.textContent.trim()).join('、') || $('.pp-no-role', row)?.textContent.trim() || '未分配角色';
+      return `<button type="button" class="pp-user-detail-item${active ? ' pp-active' : ''}" data-user-detail-id="${escapeHtml(row.dataset.userId || '')}" aria-current="${active ? 'true' : 'false'}"><span class="pp-user-detail-identity"><strong>${escapeHtml(name)}</strong><small title="${escapeHtml(organization)}">${escapeHtml(organization)}</small></span><span class="pp-user-detail-roles" title="${escapeHtml(roles)}">${escapeHtml(roles)}</span></button>`;
     }).join('');
     $$('[data-user-detail-id]', list).forEach(button => button.addEventListener('click', () => {
       const row = rows.find(item => item.dataset.userId === button.dataset.userDetailId);
@@ -2315,7 +2428,7 @@
     let visible = 0;
     buttons.forEach(button => {
       const row = rows.find(item => item.dataset.userId === button.dataset.userDetailId);
-      const identity = [row?.dataset.user || '', row?.cells[4]?.textContent || ''].join(' ').toLowerCase();
+      const identity = [row?.dataset.user || '', row?.cells[2]?.textContent || '', row?.cells[4]?.textContent || ''].join(' ').toLowerCase();
       const match = !term || identity.includes(term);
       button.hidden = !match;
       if (match) visible += 1;
@@ -2323,30 +2436,7 @@
     $('#ppUserDetailCount').textContent = term ? visible + '/' + buttons.length + ' 人' : buttons.length + ' 人';
     $('#ppUserDetailEmpty').hidden = visible > 0;
   };
-  const renderUserPermissionCounts = () => {
-    $$('tr[data-user]', $('#ppUserBody')).forEach(row => {
-      const roles = $$('.pp-role-tag', row).map(tag => tag.textContent.trim());
-      const entryIds = [...new Set(roles.flatMap(role => roleFeatureEntryMap[role] || []))];
-      const mergedFieldPermissions = buildUserFieldView(roles);
-      const counts = {
-        feature:entryIds.reduce((total, id) => total + (moduleEnabled[id] ? 1 + Object.values(featurePermissions[id] || {}).filter(Boolean).length : 0), 0),
-        field:Object.values(mergedFieldPermissions).reduce((total, values) => total + values.filter(Boolean).length, 0),
-        export:entryIds.reduce((total, id) => total + (exportPermissions[id] || []).filter(Boolean).length, 0)
-      };
-      const actionCell = $('.pp-actions', row);
-      ['feature','field','export'].forEach(kind => {
-        let cell = $(`[data-user-permission-count="${kind}"]`, row);
-        if (!cell) {
-          cell = document.createElement('td');
-          cell.className = 'pp-permission-count';
-          cell.dataset.userPermissionCount = kind;
-          row.insertBefore(cell, actionCell);
-        }
-        cell.title = '按当前人员角色合并去重统计';
-        cell.innerHTML = `<strong>${counts[kind]}</strong><span>项</span>`;
-      });
-    });
-  };
+  const renderUserPermissionCounts = () => {};
   $('#ppUserRoleTrigger').addEventListener('click', () => {
     const trigger = $('#ppUserRoleTrigger');
     const expanded = trigger.getAttribute('aria-expanded') !== 'true';
@@ -2362,6 +2452,7 @@
   const documentPermissionLabels = {
     user:'当前用户数据权限',
     org:'当前组织数据权限',
+    company:'当前所属公司数据权限',
     'org-and-children':'当前组织及下级数据权限',
     all:'全部数据权限',
     custom:'自定义数据权限'
@@ -2382,13 +2473,14 @@
     '客服经理':'客服组'
   };
   const organizationNamesByIds = ids => [...new Set(ids)].map(id => organizationById.get(id)?.name).filter(Boolean);
-  const formatDocumentScopeLabel = (permission, organization, customOrganizationIds = []) => {
+  const formatDocumentScopeLabel = (permission, organization, customOrganizationIds = [], company = '当前所属公司') => {
     const customOrganizationNames = organizationNamesByIds(customOrganizationIds);
     const organizationName = organization || '当前所属组织';
     const scopeLabels = {
       '当前用户数据权限':'本人数据',
       '当前组织数据权限':`${organizationName}数据`,
       '当前组织及下级数据权限':`${organizationName}及下级数据`,
+      '当前所属公司数据权限':`${company || '当前所属公司'}数据`,
       '全部数据权限':'所有数据',
       '自定义数据权限':`${customOrganizationNames.length ? customOrganizationNames.join('、') : organizationName}数据`
     };
@@ -2413,6 +2505,7 @@
       '当前用户数据权限':'用户可查看订单商务为本人的单据',
       '当前组织数据权限':`用户可查看订单客服为${organization}的单据`,
       '当前组织及下级数据权限':`用户可查看订单客服、销售、创建人为${organization}及下级的单据`,
+      '当前所属公司数据权限':`用户可查看当前所属公司范围内的单据`,
       '全部数据权限':'用户可查看所有单据数据',
       '自定义数据权限':`用户可查看订单客服、销售、创建人为${customOrganizationNames.length ? customOrganizationNames.join('、') : organization}的单据`
     };
@@ -2427,6 +2520,7 @@
       '当前用户数据权限':'用户只能查看订单创建人、销售、客服为本人的单据',
       '当前组织数据权限':`用户只能查看订单创建人、销售、客服为${organization}数据的单据`,
       '当前组织及下级数据权限':`用户只能查看订单创建人、销售、客服为${organization}及下级数据的单据`,
+      '当前所属公司数据权限':`用户只能查看当前所属公司范围内的单据`,
       '全部数据权限':'用户可查看所有单据数据',
       '自定义数据权限':`用户只能查看订单创建人、销售、客服为${customOrganizationNames.length ? customOrganizationNames.join('、') : organization}数据的单据`
     };
@@ -2462,7 +2556,8 @@
     if (!merged) return '';
     const currentOrganization = $('#ppUserOrganization').textContent.trim() || '当前所属组织';
     const customOrganizationIds = customOrganizationIdsForRoles(sources);
-    const scopeLabel = formatDocumentScopeLabel(merged.document, currentOrganization, customOrganizationIds);
+    const currentCompany = $('#ppUserCompany').textContent.trim() || '当前所属公司';
+    const scopeLabel = formatDocumentScopeLabel(merged.document, currentOrganization, customOrganizationIds, currentCompany);
     return `<span class="pp-user-scope-list"><span class="pp-user-scope pp-user-scope-union pp-user-scope-highlight">${scopeLabel}</span></span>`;
   };
   const renderRoleFeatureEntries = role => {
@@ -2487,7 +2582,12 @@
     const detail = $('#ppDetailView');
     const readOnly = !!state.detailReadOnly;
     detail.classList.toggle('pp-readonly', readOnly);
-    $('#ppDetailModeStatus').textContent = readOnly ? '只读' : '启用';
+    const detailStatus = readOnly ? '只读' : (state.selectedRoleStatus || '启用');
+    $('#ppRoleTitle').readOnly = readOnly;
+    $('#ppRoleTitle').setAttribute('aria-readonly', String(readOnly));
+    $('#ppDetailModeStatus').textContent = detailStatus;
+    $('#ppRoleStatusToggle').disabled = readOnly;
+    $('#ppRoleStatusToggle').classList.toggle('pp-stopped', detailStatus === '停用');
     $('.pp-status', detail).hidden = readOnly;
     $('#ppSave').hidden = false;
     $('#ppSave').textContent = '保存';
@@ -2502,7 +2602,8 @@
     detail.classList.toggle('pp-user-detail-active', readOnly);
     detail.classList.toggle('pp-role-detail-active', !readOnly);
     if (readOnly) renderUserDetailSidebar(); else renderRoleDetailSidebar();
-    if (readOnly) $('#ppRoleMemberManage').hidden = true; else renderRoleMemberManage();
+    $('#ppRoleMemberManage').classList.remove('pp-member-editor-open');
+    $('#ppRoleMemberManage').hidden = true;
     if (readOnly) renderUserDataPermissions();
     if (readOnly) {
       $$('input[type="checkbox"], input[type="radio"]', detail).forEach(input => { input.disabled = true; });
@@ -2552,7 +2653,8 @@
     });
     $('#ppListView').hidden = true;
     $('#ppDetailView').hidden = false;
-    $('#ppRoleTitle').textContent = state.selectedRole;
+    $('#ppRoleTitle').value = state.selectedRole;
+    $('#ppRoleTitle').style.width = readOnly ? Math.max(4, [...state.selectedRole].length + 1) + 'em' : '';
     renderFeeScopeConfig('receivable');
     renderFeeScopeConfig('payable');
     $$('[data-data-permission]').forEach(group => {
@@ -2569,6 +2671,8 @@
     persist();
   };
   const openRolePermissionDetail = row => {
+    expandedRoleDetailItems.add(row.dataset.role);
+    state.selectedRoleStatus = row.dataset.status || (row.cells[6]?.textContent.includes('停用') ? '停用' : '启用');
     const rolePermission = roleDataPermissionMap[row.dataset.role] || {};
     state.dataPermissions.document = documentPermissionValues[rolePermission.document || row.cells[2].textContent.trim()] || 'user';
     state.dataPermissions.receivable = feePermissionValues[rolePermission.receivable] || 'module';
@@ -2585,6 +2689,47 @@
     showDetail(row.dataset.role, false);
   };
   const openRolePermissionEditor = btn => openRolePermissionDetail(btn.closest('tr'));
+  const moveRoleProfile = (map, previousRole, nextRole) => {
+    if (previousRole === nextRole || !Object.prototype.hasOwnProperty.call(map, previousRole)) return;
+    map[nextRole] = map[previousRole];
+    delete map[previousRole];
+  };
+  const applyRoleIdentityChanges = () => {
+    const previousRole = state.selectedRole;
+    const nextRole = $('#ppRoleTitle').value.trim();
+    if (!nextRole) {
+      showToast('角色名称不能为空');
+      $('#ppRoleTitle').focus();
+      return false;
+    }
+    const rows = $$('tr[data-role]', $('#ppRoleBody'));
+    if (rows.some(row => row.dataset.role === nextRole && row.dataset.role !== previousRole)) {
+      showToast('角色名称已存在，请更换名称');
+      $('#ppRoleTitle').focus();
+      return false;
+    }
+    const roleRow = rows.find(row => row.dataset.role === previousRole);
+    if (!roleRow) return false;
+    const status = state.selectedRoleStatus === '停用' ? '停用' : '启用';
+    if (previousRole !== nextRole) {
+      roleRow.dataset.role = nextRole;
+      $('strong', roleRow.cells[1]).textContent = nextRole;
+      moveRoleProfile(roleFeaturePermissions, previousRole, nextRole);
+      moveRoleProfile(roleFieldPermissions, previousRole, nextRole);
+      moveRoleProfile(roleDataPermissionMap, previousRole, nextRole);
+      moveRoleProfile(roleFeatureEntryMap, previousRole, nextRole);
+      moveRoleProfile(roleOrganizationDefaults, previousRole, nextRole);
+      moveRoleProfile(roleOrganizationLabelOverrides, previousRole, nextRole);
+      roleMembers.forEach(member => { member.roles = member.roles.map(role => role === previousRole ? nextRole : role); });
+      if (expandedRoleDetailItems.delete(previousRole)) expandedRoleDetailItems.add(nextRole);
+      state.selectedRole = nextRole;
+      syncRoleMembers();
+    }
+    roleRow.dataset.status = status;
+    roleRow.cells[6].innerHTML = `<span class="${status === '启用' ? 'pp-enabled' : 'pp-disabled-status'}"><i></i>${status}</span>`;
+    renderRoleDetailSidebar();
+    return true;
+  };
   const addLogActionButtons = () => {
     $$('#ppRoleBody .pp-actions').forEach(cell => {
       if ($('.pp-view-log', cell)) return;
@@ -2866,7 +3011,7 @@
   };
   const renderPermissionName = value => {
     const meta = permissionTypeMeta(value);
-    const showBadge = ['字段','TAB','详情'].includes(meta.type);
+    const showBadge = meta.type === '字段';
     const badge = showBadge ? `<small class="pp-permission-type pp-permission-type-${meta.className}">${escapeHtml(meta.type)}</small>` : '';
     return `<span>${escapeHtml(meta.text)}</span>${badge}`;
   };
@@ -2875,47 +3020,56 @@
   const renderRoleDetailSidebar = () => {
     const rows = $$('tr[data-role]', $('#ppRoleBody'));
     const list = $('#ppRoleDetailList');
-    if (state.selectedRole) expandedRoleDetailItems.add(state.selectedRole);
-    $('#ppRoleDetailCount').textContent = rows.length + ' 个';
-    list.innerHTML = rows.map(row => {
+    const term = $('#ppRoleDetailSearch').value.trim().toLowerCase();
+    const visibleRows = rows.filter(row => !term || row.dataset.role.toLowerCase().includes(term) || roleMemberEntries(row.dataset.role).some(({ member }) => `${member.name} ${member.dept} ${member.company}`.toLowerCase().includes(term)));
+    $('#ppRoleDetailCount').textContent = term ? visibleRows.length + '/' + rows.length + ' 个' : rows.length + ' 个';
+    list.innerHTML = visibleRows.map(row => {
       const role = row.dataset.role;
       const members = roleMemberEntries(role);
-      const expanded = expandedRoleDetailItems.has(role);
+      const roleMatches = !term || role.toLowerCase().includes(term);
+      const visibleMembers = roleMatches ? members : members.filter(({ member }) => `${member.name} ${member.dept} ${member.company}`.toLowerCase().includes(term));
+      const expanded = !!term || expandedRoleDetailItems.has(role);
       const active = role === state.selectedRole;
-      const memberRows = members.length ? members.map(({ member, index }) => `<div class="pp-role-detail-member"><div><strong>${escapeHtml(member.name)}</strong><small title="${escapeHtml(member.dept)}">${escapeHtml(member.dept)}</small><small title="${escapeHtml(member.company)}">${escapeHtml(member.company)}</small></div><button type="button" class="pp-role-detail-remove" data-role-detail-remove="${index}" data-role-detail-role="${escapeHtml(role)}" title="从${escapeHtml(role)}移除${escapeHtml(member.name)}" aria-label="从${escapeHtml(role)}移除${escapeHtml(member.name)}"><i data-lucide="user-minus" aria-hidden="true"></i></button></div>`).join('') : '<div class="pp-role-detail-member-empty">暂无员工</div>';
-      return `<section class="pp-role-detail-section${active ? ' pp-active' : ''}"><div class="pp-role-detail-head"><button type="button" class="pp-role-detail-toggle" data-role-detail-toggle="${escapeHtml(role)}" aria-label="${expanded ? '收起' : '展开'}${escapeHtml(role)}员工" aria-expanded="${expanded}"><i data-lucide="chevron-${expanded ? 'down' : 'right'}" aria-hidden="true"></i></button><button type="button" class="pp-role-detail-switch" data-role-detail-switch="${escapeHtml(role)}" aria-current="${active ? 'true' : 'false'}"><strong>${escapeHtml(role)}</strong><small>${members.length} 人</small></button><button type="button" class="pp-role-detail-add" data-role-detail-add="${escapeHtml(role)}" title="为${escapeHtml(role)}添加员工" aria-label="为${escapeHtml(role)}添加员工"><i data-lucide="user-plus" aria-hidden="true"></i></button></div>${expanded ? `<div class="pp-role-detail-members">${memberRows}</div>` : ''}</section>`;
+      const memberRows = visibleMembers.length ? visibleMembers.map(({ member }) => `<div class="pp-role-detail-member"><div><div class="pp-role-detail-member-identity"><strong>${escapeHtml(member.name)}</strong><small title="${escapeHtml(member.dept)}">${escapeHtml(member.dept)}</small></div><small title="${escapeHtml(member.company)}">${escapeHtml(member.company)}</small></div></div>`).join('') : '<div class="pp-role-detail-member-empty">暂无匹配员工</div>';
+      return `<section class="pp-role-detail-section${active ? ' pp-active' : ''}"><div class="pp-role-detail-head" data-role-detail-head="${escapeHtml(role)}"><button type="button" class="pp-role-detail-toggle" aria-label="${expanded ? '收起' : '展开'}${escapeHtml(role)}员工" aria-expanded="${expanded}"><span class="pp-role-detail-chevron" aria-hidden="true">${expanded ? '▾' : '›'}</span></button><button type="button" class="pp-role-detail-switch" aria-current="${active ? 'true' : 'false'}"><strong>${escapeHtml(role)}</strong><small>${members.length} 人</small></button><button type="button" class="pp-role-detail-edit" data-role-detail-edit="${escapeHtml(role)}" title="编辑${escapeHtml(role)}员工" aria-label="编辑${escapeHtml(role)}员工"><svg class="pp-role-detail-pencil" data-icon="pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path><path d="m15 5 4 4"></path></svg></button></div>${expanded ? `<div class="pp-role-detail-members">${memberRows}</div>` : ''}</section>`;
     }).join('');
-    $$('[data-role-detail-toggle]', list).forEach(button => button.addEventListener('click', () => {
-      const role = button.dataset.roleDetailToggle;
+    if (!visibleRows.length) list.innerHTML = '<div class="pp-role-detail-member-empty">未找到匹配的角色或员工</div>';
+    $$('[data-role-detail-head]', list).forEach(head => head.addEventListener('click', event => {
+      if (event.target.closest('[data-role-detail-edit]')) return;
+      const role = head.dataset.roleDetailHead;
+      const row = rows.find(item => item.dataset.role === role);
+      if (!row) return;
+      if (role !== state.selectedRole) {
+        expandedRoleDetailItems.add(role);
+        openRolePermissionDetail(row);
+        return;
+      }
       if (expandedRoleDetailItems.has(role)) expandedRoleDetailItems.delete(role); else expandedRoleDetailItems.add(role);
       renderRoleDetailSidebar();
     }));
-    $$('[data-role-detail-switch]', list).forEach(button => button.addEventListener('click', () => {
-      const row = rows.find(item => item.dataset.role === button.dataset.roleDetailSwitch);
+    $$('[data-role-detail-edit]', list).forEach(button => button.addEventListener('click', event => {
+      event.stopPropagation();
+      const row = rows.find(item => item.dataset.role === button.dataset.roleDetailEdit);
       if (!row) return;
       expandedRoleDetailItems.add(row.dataset.role);
       openRolePermissionDetail(row);
-    }));
-    $$('[data-role-detail-add]', list).forEach(button => button.addEventListener('click', () => {
-      const row = rows.find(item => item.dataset.role === button.dataset.roleDetailAdd);
-      if (!row) return;
-      expandedRoleDetailItems.add(row.dataset.role);
-      openRolePermissionDetail(row);
+      const manage = $('#ppRoleMemberManage');
+      manage.classList.add('pp-member-editor-open');
+      manage.hidden = false;
+      renderRoleMemberManage();
       requestAnimationFrame(() => $('#ppRoleMemberPickerTrigger').click());
-    }));
-    $$('[data-role-detail-remove]', list).forEach(button => button.addEventListener('click', () => {
-      const index = Number(button.dataset.roleDetailRemove);
-      const role = button.dataset.roleDetailRole;
-      const member = roleMembers[index];
-      if (!member || !member.roles.includes(role)) return;
-      member.roles = member.roles.filter(item => item !== role);
-      syncRoleMembers();
-      if (role === state.selectedRole) renderRoleMemberManage();
-      showToast(`已从角色“${role}”移除员工“${member.name}”`);
     }));
     if (window.lucide) window.lucide.createIcons({ attrs:{ width:16, height:16 } });
   };
   const roleMemberPickerDraft = new Set();
+  $('#ppRoleDetailSearch').addEventListener('input', renderRoleDetailSidebar);
+  $('#ppRoleDetailSearch').addEventListener('search', renderRoleDetailSidebar);
+  $('#ppRoleStatusToggle').addEventListener('click', () => {
+    if (state.detailReadOnly) return;
+    state.selectedRoleStatus = state.selectedRoleStatus === '停用' ? '启用' : '停用';
+    $('#ppDetailModeStatus').textContent = state.selectedRoleStatus;
+    $('#ppRoleStatusToggle').classList.toggle('pp-stopped', state.selectedRoleStatus === '停用');
+  });
   const syncRoleMembers = () => {
     state.roleMembers = roleMembers.map(member => ({ ...member, roles:[...member.roles] }));
     $$('tr[data-user]', $('#ppUserBody')).forEach(row => {
@@ -2931,12 +3085,9 @@
   };
   const renderRoleMemberManage = () => {
     const manage = $('#ppRoleMemberManage');
-    if (state.detailReadOnly) {
-      manage.hidden = true;
-      return;
-    }
-    manage.hidden = false;
-    updateRoleMemberPickerSummary();
+    const editing = !state.detailReadOnly && manage.classList.contains('pp-member-editor-open');
+    manage.hidden = !editing;
+    if (editing) updateRoleMemberPickerSummary();
   };
   const roleMemberPickerCandidates = () => {
     const candidates = new Map();
@@ -2974,6 +3125,8 @@
     $('#ppRoleMemberPickerTrigger').setAttribute('aria-expanded', 'false');
     $('#ppRoleMemberPickerSearch').value = '';
     roleMemberPickerDraft.clear();
+    $('#ppRoleMemberManage').classList.remove('pp-member-editor-open');
+    $('#ppRoleMemberManage').hidden = true;
     updateRoleMemberPickerSummary();
   };
   $('#ppRoleMemberPickerTrigger').addEventListener('click', event => {
@@ -3391,9 +3544,23 @@
       return (node.children || []).some(matchesNode);
     };
     const toggle = (key, title, expanded) => `<button type="button" class="pp-tree-toggle" data-feature-toggle="${key}" aria-label="${expanded ? '收起' : '展开'}${title}" aria-expanded="${expanded}"><i data-lucide="chevron-${expanded ? 'down' : 'right'}" aria-hidden="true"></i></button>`;
+    const renderFeatureLeafRow = (id, key, name) => {
+      const meta = permissionTypeMeta(name);
+      if (meta.type === '字段') {
+        const setting = currentFeatureFieldSetting(id, key);
+        const option = (property, label) => {
+          const maskedSearchDisabled = property === 'searchable' && setting.masked;
+          const disabled = state.detailReadOnly || maskedSearchDisabled;
+          const tooltip = maskedSearchDisabled ? '该字段已开启脱敏，查询条件默认不显示' : '';
+          return `<label class="pp-feature-field-option${disabled ? ' pp-disabled' : ''}"${tooltip ? ` data-tooltip="${tooltip}"` : ''}><input type="checkbox" data-feature-field-key="${key}" data-feature-field-setting="${property}" data-module-id="${id}" aria-label="${escapeHtml(meta.text)}${label}" ${setting[property] ? 'checked' : ''} ${disabled ? 'disabled' : ''}></label>`;
+        };
+        return `<div class="pp-feature-field-row"><span class="pp-feature-field-name pp-permission-name">${renderPermissionName(name)}</span>${option('masked','脱敏')}${option('searchable','查询条件')}${option('exportable','导出')}</div>`;
+      }
+      return `<div class="pp-feature-permission-row"><label class="pp-check pp-feature-permission-main${featureChangeClass(id, key)}"><input type="checkbox" data-feature-key="${key}" data-module-id="${id}" ${currentFeaturePermission(id, key) ? 'checked' : ''} ${state.detailReadOnly ? 'disabled' : ''}><span class="pp-permission-name">${renderPermissionName(name)}</span></label></div>`;
+    };
     const actions = (id, section, names, prefix, parentKeys, depth) => names.length ? `<div class="pp-unified-actions" style="--tree-depth:${depth}"><div class="pp-unified-action-list pp-feature-action-grid">${names.map((name, index) => {
       const key = `${prefix}.${index}`;
-      return `<label class="pp-check${featureChangeClass(id, key)}" data-feature-span="1"><input type="checkbox" data-feature-key="${key}" data-module-id="${id}" ${currentFeaturePermission(id, key) ? 'checked' : ''} ${state.detailReadOnly ? 'disabled' : ''}><span class="pp-permission-name">${renderPermissionName(name)}</span></label>`;
+      return renderFeatureLeafRow(id, key, name);
     }).join('')}</div></div>` : '';
     const renderFlatSection = (id, section, depth, forceMatch = false) => {
       const indexed = section.actions.map((name, index) => ({ name, index, type:permissionTypeMeta(name).type }));
@@ -3404,7 +3571,7 @@
       if (other.length) rows.push(other);
       return rows.filter(row => row.length).map(row => `<div class="pp-unified-actions pp-feature-type-row" style="--tree-depth:${depth + 1}"><div class="pp-unified-action-list pp-feature-action-grid">${row.map(({ name, index }) => {
         const key = `action.${section.id}.${index}`;
-        return `<label class="pp-check${featureChangeClass(id, key)}" data-feature-span="1"><input type="checkbox" data-feature-key="${key}" data-module-id="${id}" ${currentFeaturePermission(id, key) ? 'checked' : ''} ${state.detailReadOnly ? 'disabled' : ''}><span class="pp-permission-name">${renderPermissionName(name)}</span></label>`;
+        return renderFeatureLeafRow(id, key, name);
       }).join('')}</div></div>`).join('');
     };
     const renderTabActions = (id, section, tab, names, depth) => {
@@ -3417,16 +3584,17 @@
       const commonNames = new Set(['可否编辑Tab页','费用提交','海运费同步']);
       const groups = [
         indexed.filter(item => commonNames.has(item.text)),
-        indexed.filter(item => item.type === '字段'),
+        indexed.filter(item => item.type === '字段' && item.text !== '总利润/利润率'),
         indexed.filter(item => item.text === '应收' || item.text.startsWith('应收_')),
         indexed.filter(item => item.text === '应付' || item.text.startsWith('应付_')),
-        indexed.filter(item => item.text === 'DC' || item.text.startsWith('DC_'))
+        indexed.filter(item => item.text === 'DC' || item.text.startsWith('DC_')),
+        indexed.filter(item => item.text === '总利润/利润率')
       ];
       const groupedIndexes = new Set(groups.flatMap(group => group.map(item => item.index)));
       groups[0].push(...indexed.filter(item => !groupedIndexes.has(item.index)));
       return groups.filter(group => group.length).map(group => `<div class="pp-unified-actions pp-feature-type-row" style="--tree-depth:${depth}"><div class="pp-unified-action-list pp-feature-action-grid">${group.map(({ name, index }) => {
         const key = `action.${section.id}.${tab.id}.${index}`;
-        return `<label class="pp-check${featureChangeClass(id, key)}" data-feature-span="1"><input type="checkbox" data-feature-key="${key}" data-module-id="${id}" ${currentFeaturePermission(id, key) ? 'checked' : ''} ${state.detailReadOnly ? 'disabled' : ''}><span class="pp-permission-name">${renderPermissionName(name)}</span></label>`;
+        return renderFeatureLeafRow(id, key, name);
       }).join('')}</div></div>`).join('');
     };
     const renderSection = (id, section, depth, forceMatch = false) => {
@@ -3441,7 +3609,7 @@
       if (status.partial) indeterminate.push(`page:${id}:${section.id}`);
       const children = expanded ? `<div class="pp-unified-children">${actions(id, section, visibleActions, `action.${section.id}`, [key], depth + 1)}${visibleTabs.map(tab => {
         const tabKey = `tab.${section.id}.${tab.id}`;
-        const tabKeys = [tabKey, ...tab.actions.map((_, index) => `action.${section.id}.${tab.id}.${index}`)];
+        const tabKeys = [tabKey, ...tab.actions.flatMap((action, index) => isFeatureFieldName(action) ? [] : [`action.${section.id}.${tab.id}.${index}`])];
         const tabStatus = resourceState(id, tabKeys);
         if (tabStatus.partial) indeterminate.push(`tab:${id}:${section.id}:${tab.id}`);
         const tabExpanded = expandedFeatureResources.has(`tab:${id}:${section.id}:${tab.id}`) || !!term;
@@ -3461,7 +3629,8 @@
       return `<div class="pp-unified-node${!currentFeatureModuleEnabled(node.id) ? ' pp-resource-off' : ''}" data-kind="menu" data-depth="${depth}" style="--tree-depth:${depth}"><div class="pp-unified-node-head">${hasChildren ? toggle(`menu:${node.id}`, node.title, expanded) : '<span class="pp-tree-toggle-space"></span>'}<label class="pp-check${featureModuleChangeClass(node.id)}"><input type="checkbox" data-feature-resource="menu:${node.id}" ${status.checked ? 'checked' : ''} ${state.detailReadOnly ? 'disabled' : ''}><strong>${node.title}</strong>${renderRoleListScope(node.id)}</label>${renderUserRoleScopes(node.id)}${renderFeatureScopeNote(node.id)}</div>${expanded ? `<div class="pp-unified-children">${sections.map(section => section.flat ? renderFlatSection(node.id, section, depth + 1, matchedTitle) : renderSection(node.id, section, depth + 1, matchedTitle)).join('')}${renderNodes(node.children || [], depth + 1)}</div>` : ''}</div>`;
     }).join('');
     const tree = $('#ppFeatureTree');
-    tree.innerHTML = renderNodes(featureHierarchy) || '<div class="pp-unified-empty">未找到匹配的功能权限</div>';
+    const featureTreeRows = renderNodes(featureHierarchy);
+    tree.innerHTML = featureTreeRows ? `<div class="pp-feature-column-head"><span></span><span>脱敏(****)</span><span>查询条件</span><span>导出</span></div>${featureTreeRows}` : '<div class="pp-unified-empty">未找到匹配的功能权限</div>';
     renderPermissionChanges('#ppFeatureChanges', collectFeatureChanges(), 'feature');
     indeterminate.forEach(key => {
       const input = [...$$('[data-feature-resource]', tree)].find(item => item.dataset.featureResource === key);
@@ -3491,7 +3660,7 @@
         if (enabled) enableFeatureLineage(id);
       } else {
         const section = featureConfigs[id].sections.find(item => item.id === sectionId);
-        const keys = kind === 'page' ? featureKeysFor({ sections:[section] }) : [`tab.${sectionId}.${tabId}`, ...section.tabs.find(tab => tab.id === tabId).actions.map((_, index) => `action.${sectionId}.${tabId}.${index}`)];
+        const keys = kind === 'page' ? featureKeysFor({ sections:[section] }) : [`tab.${sectionId}.${tabId}`, ...section.tabs.find(tab => tab.id === tabId).actions.flatMap((action, index) => isFeatureFieldName(action) ? [] : [`action.${sectionId}.${tabId}.${index}`])];
         keys.forEach(key => { featurePermissions[id][key] = enabled; });
         if (enabled) {
           enableFeatureLineage(id);
@@ -3513,6 +3682,17 @@
         if (section?.entryKey) featurePermissions[id][section.entryKey] = true;
         if (parts.length === 4) featurePermissions[id][`tab.${parts[1]}.${parts[2]}`] = true;
       }
+      state.currentModule = id;
+      renderFeatureTree();
+      persist();
+    }));
+    $$('[data-feature-field-key]', tree).forEach(input => input.addEventListener('change', () => {
+      const id = input.dataset.moduleId;
+      const key = input.dataset.featureFieldKey;
+      const property = input.dataset.featureFieldSetting;
+      if (!featureFieldSettings[id]?.[key] || !['masked','exportable','searchable'].includes(property)) return;
+      featureFieldSettings[id][key][property] = input.checked;
+      if (property === 'masked' && input.checked) featureFieldSettings[id][key].searchable = false;
       state.currentModule = id;
       renderFeatureTree();
       persist();
@@ -3792,6 +3972,7 @@
     }
     if (!validateCustomOrganizations()) return;
     if (!validateFeeScopeSelections()) return;
+    if (!applyRoleIdentityChanges()) return;
     storeRoleFeatureProfile(state.selectedRole);
     storeRoleFieldProfile(state.selectedRole);
     const roleRow = $$('tr[data-role]', $('#ppRoleBody')).find(row => row.dataset.role === state.selectedRole);
