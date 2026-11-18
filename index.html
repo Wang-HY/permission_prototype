@@ -14,7 +14,41 @@
   #permProto .pp-user-detail-search input:focus { border-color:#8eabe0; box-shadow:0 0 0 2px rgba(35,63,116,.08); }
   #permProto .pp-user-detail-sidebar .pp-user-detail-list { max-height:calc(100vh - 180px); }
   #permProto .pp-user-detail-empty { padding:24px 12px; color:var(--pp-muted); font-size:12px; text-align:center; }
-  @media (max-width:800px) { #permProto .pp-user-detail-sidebar .pp-user-detail-list { max-height:150px; } }
+  #permProto .pp-detail-view.pp-role-detail-active { display:grid; grid-template-columns:300px minmax(0,1fr); align-items:start; gap:14px; }
+  #permProto .pp-role-detail-sidebar { position:sticky; z-index:23; top:70px; max-height:calc(100vh - 92px); overflow:hidden; border:1px solid var(--pp-border); background:var(--pp-surface); }
+  #permProto .pp-role-detail-sidebar > header { min-height:42px; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 12px; border-bottom:1px solid var(--pp-border); background:var(--pp-surface-soft); }
+  #permProto .pp-role-detail-sidebar > header strong { font-size:13px; font-weight:500; }
+  #permProto .pp-role-detail-sidebar > header span { color:var(--pp-muted); font-size:11px; }
+  #permProto .pp-role-detail-list { max-height:calc(100vh - 135px); overflow:auto; }
+  #permProto .pp-role-detail-section { border-bottom:1px solid #edf0f4; }
+  #permProto .pp-role-detail-head { min-height:44px; display:grid; grid-template-columns:26px minmax(0,1fr) 30px; align-items:center; gap:2px; padding:4px 6px; }
+  #permProto .pp-role-detail-section.pp-active > .pp-role-detail-head { background:var(--pp-primary-soft); }
+  #permProto .pp-role-detail-toggle, #permProto .pp-role-detail-add, #permProto .pp-role-detail-remove { display:grid; place-items:center; padding:0; border:0; background:transparent; color:var(--pp-muted); }
+  #permProto .pp-role-detail-toggle { width:26px; height:30px; }
+  #permProto .pp-role-detail-toggle svg { width:15px; height:15px; }
+  #permProto .pp-role-detail-switch { min-width:0; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:6px 4px; border:0; background:transparent; color:var(--pp-text); text-align:left; }
+  #permProto .pp-role-detail-switch strong { min-width:0; overflow:hidden; font-size:12px; font-weight:500; text-overflow:ellipsis; white-space:nowrap; }
+  #permProto .pp-role-detail-switch small { flex:0 0 auto; color:var(--pp-muted); font-size:10px; }
+  #permProto .pp-role-detail-add { width:30px; height:30px; color:var(--pp-primary); }
+  #permProto .pp-role-detail-add:hover { background:var(--pp-primary-soft); }
+  #permProto .pp-role-detail-add svg, #permProto .pp-role-detail-remove svg { width:15px; height:15px; }
+  #permProto .pp-role-detail-members { border-top:1px solid #edf0f4; background:#fbfcff; }
+  #permProto .pp-role-detail-member { min-height:68px; display:grid; grid-template-columns:minmax(0,1fr) 28px; align-items:center; gap:6px; padding:7px 7px 7px 38px; border-bottom:1px solid #f0f2f6; }
+  #permProto .pp-role-detail-member:last-child { border-bottom:0; }
+  #permProto .pp-role-detail-member > div { min-width:0; display:grid; gap:2px; }
+  #permProto .pp-role-detail-member strong { font-size:12px; font-weight:500; }
+  #permProto .pp-role-detail-member small { overflow:hidden; color:var(--pp-muted); font-size:10px; line-height:1.35; text-overflow:ellipsis; white-space:nowrap; }
+  #permProto .pp-role-detail-remove { width:28px; height:28px; }
+  #permProto .pp-role-detail-remove:hover { color:var(--pp-red); background:var(--pp-red-soft); }
+  #permProto .pp-role-detail-member-empty { padding:14px 12px 14px 38px; color:var(--pp-muted); font-size:11px; }
+  #permProto .pp-detail-view.pp-role-detail-active .pp-detail-actions { left:396px; }
+  @media (max-width:800px) {
+    #permProto .pp-user-detail-sidebar .pp-user-detail-list { max-height:150px; }
+    #permProto .pp-detail-view.pp-role-detail-active { grid-template-columns:1fr; }
+    #permProto .pp-role-detail-sidebar { position:relative; top:auto; max-height:320px; }
+    #permProto .pp-role-detail-list { max-height:276px; }
+    #permProto .pp-detail-view.pp-role-detail-active .pp-detail-actions { left:10px; }
+  }
 </style>
 </head>
 <body>
@@ -110,6 +144,7 @@
 
       <section class="pp-detail-view" id="ppDetailView" hidden>
       <aside class="pp-user-detail-sidebar" id="ppUserDetailSidebar" hidden><header><strong>全部用户</strong><span id="ppUserDetailCount">0 人</span></header><label class="pp-user-detail-search"><i data-lucide="search" aria-hidden="true"></i><input type="search" id="ppUserDetailSearch" placeholder="搜索用户或角色" aria-label="搜索用户或角色"></label><div class="pp-user-detail-list" id="ppUserDetailList"></div><div class="pp-user-detail-empty" id="ppUserDetailEmpty" hidden>未找到匹配的用户或角色</div></aside>
+      <aside class="pp-role-detail-sidebar" id="ppRoleDetailSidebar" hidden><header><strong>全部角色</strong><span id="ppRoleDetailCount">0 个</span></header><div class="pp-role-detail-list" id="ppRoleDetailList"></div></aside>
       <div class="pp-detail-content">
       <div class="pp-detail-sticky-head">
       <section class="pp-role-head">
@@ -2463,8 +2498,10 @@
     $('#ppUserDataPermissions').hidden = !readOnly;
     $('#ppUserContext').hidden = !readOnly;
     $('#ppUserDetailSidebar').hidden = !readOnly;
+    $('#ppRoleDetailSidebar').hidden = readOnly;
     detail.classList.toggle('pp-user-detail-active', readOnly);
-    if (readOnly) renderUserDetailSidebar();
+    detail.classList.toggle('pp-role-detail-active', !readOnly);
+    if (readOnly) renderUserDetailSidebar(); else renderRoleDetailSidebar();
     if (readOnly) $('#ppRoleMemberManage').hidden = true; else renderRoleMemberManage();
     if (readOnly) renderUserDataPermissions();
     if (readOnly) {
@@ -2531,8 +2568,7 @@
     requestAnimationFrame(syncDetailStickyHeight);
     persist();
   };
-  const openRolePermissionEditor = btn => {
-    const row = btn.closest('tr');
+  const openRolePermissionDetail = row => {
     const rolePermission = roleDataPermissionMap[row.dataset.role] || {};
     state.dataPermissions.document = documentPermissionValues[rolePermission.document || row.cells[2].textContent.trim()] || 'user';
     state.dataPermissions.receivable = feePermissionValues[rolePermission.receivable] || 'module';
@@ -2548,6 +2584,7 @@
     state.customOrganizations = (row.dataset.organizations || '').split('|').filter(Boolean);
     showDetail(row.dataset.role, false);
   };
+  const openRolePermissionEditor = btn => openRolePermissionDetail(btn.closest('tr'));
   const addLogActionButtons = () => {
     $$('#ppRoleBody .pp-actions').forEach(cell => {
       if ($('.pp-view-log', cell)) return;
@@ -2834,9 +2871,62 @@
     return `<span>${escapeHtml(meta.text)}</span>${badge}`;
   };
   const roleMemberEntries = role => roleMembers.map((member, index) => ({ member, index })).filter(entry => entry.member.roles.includes(role));
+  const expandedRoleDetailItems = new Set();
+  const renderRoleDetailSidebar = () => {
+    const rows = $$('tr[data-role]', $('#ppRoleBody'));
+    const list = $('#ppRoleDetailList');
+    if (state.selectedRole) expandedRoleDetailItems.add(state.selectedRole);
+    $('#ppRoleDetailCount').textContent = rows.length + ' 个';
+    list.innerHTML = rows.map(row => {
+      const role = row.dataset.role;
+      const members = roleMemberEntries(role);
+      const expanded = expandedRoleDetailItems.has(role);
+      const active = role === state.selectedRole;
+      const memberRows = members.length ? members.map(({ member, index }) => `<div class="pp-role-detail-member"><div><strong>${escapeHtml(member.name)}</strong><small title="${escapeHtml(member.dept)}">${escapeHtml(member.dept)}</small><small title="${escapeHtml(member.company)}">${escapeHtml(member.company)}</small></div><button type="button" class="pp-role-detail-remove" data-role-detail-remove="${index}" data-role-detail-role="${escapeHtml(role)}" title="从${escapeHtml(role)}移除${escapeHtml(member.name)}" aria-label="从${escapeHtml(role)}移除${escapeHtml(member.name)}"><i data-lucide="user-minus" aria-hidden="true"></i></button></div>`).join('') : '<div class="pp-role-detail-member-empty">暂无员工</div>';
+      return `<section class="pp-role-detail-section${active ? ' pp-active' : ''}"><div class="pp-role-detail-head"><button type="button" class="pp-role-detail-toggle" data-role-detail-toggle="${escapeHtml(role)}" aria-label="${expanded ? '收起' : '展开'}${escapeHtml(role)}员工" aria-expanded="${expanded}"><i data-lucide="chevron-${expanded ? 'down' : 'right'}" aria-hidden="true"></i></button><button type="button" class="pp-role-detail-switch" data-role-detail-switch="${escapeHtml(role)}" aria-current="${active ? 'true' : 'false'}"><strong>${escapeHtml(role)}</strong><small>${members.length} 人</small></button><button type="button" class="pp-role-detail-add" data-role-detail-add="${escapeHtml(role)}" title="为${escapeHtml(role)}添加员工" aria-label="为${escapeHtml(role)}添加员工"><i data-lucide="user-plus" aria-hidden="true"></i></button></div>${expanded ? `<div class="pp-role-detail-members">${memberRows}</div>` : ''}</section>`;
+    }).join('');
+    $$('[data-role-detail-toggle]', list).forEach(button => button.addEventListener('click', () => {
+      const role = button.dataset.roleDetailToggle;
+      if (expandedRoleDetailItems.has(role)) expandedRoleDetailItems.delete(role); else expandedRoleDetailItems.add(role);
+      renderRoleDetailSidebar();
+    }));
+    $$('[data-role-detail-switch]', list).forEach(button => button.addEventListener('click', () => {
+      const row = rows.find(item => item.dataset.role === button.dataset.roleDetailSwitch);
+      if (!row) return;
+      expandedRoleDetailItems.add(row.dataset.role);
+      openRolePermissionDetail(row);
+    }));
+    $$('[data-role-detail-add]', list).forEach(button => button.addEventListener('click', () => {
+      const row = rows.find(item => item.dataset.role === button.dataset.roleDetailAdd);
+      if (!row) return;
+      expandedRoleDetailItems.add(row.dataset.role);
+      openRolePermissionDetail(row);
+      requestAnimationFrame(() => $('#ppRoleMemberPickerTrigger').click());
+    }));
+    $$('[data-role-detail-remove]', list).forEach(button => button.addEventListener('click', () => {
+      const index = Number(button.dataset.roleDetailRemove);
+      const role = button.dataset.roleDetailRole;
+      const member = roleMembers[index];
+      if (!member || !member.roles.includes(role)) return;
+      member.roles = member.roles.filter(item => item !== role);
+      syncRoleMembers();
+      if (role === state.selectedRole) renderRoleMemberManage();
+      showToast(`已从角色“${role}”移除员工“${member.name}”`);
+    }));
+    if (window.lucide) window.lucide.createIcons({ attrs:{ width:16, height:16 } });
+  };
   const roleMemberPickerDraft = new Set();
   const syncRoleMembers = () => {
     state.roleMembers = roleMembers.map(member => ({ ...member, roles:[...member.roles] }));
+    $$('tr[data-user]', $('#ppUserBody')).forEach(row => {
+      const login = row.dataset.login + '@example.test';
+      const member = roleMembers.find(item => item.login === login);
+      if (!member) return;
+      state.userRoleAssignments[row.dataset.userId] = [...member.roles];
+      setUserRowRoles(row, member.roles);
+    });
+    renderUserPermissionCounts();
+    if (!$('#ppRoleDetailSidebar').hidden) renderRoleDetailSidebar();
     persist();
   };
   const renderRoleMemberManage = () => {
@@ -2859,7 +2949,7 @@
         login,
         dept:row.cells[2].textContent.trim(),
         company:row.cells[3].textContent.trim(),
-        roles:[]
+        roles:$$('.pp-role-tag', row).map(tag => tag.textContent.trim())
       });
     });
     return [...candidates.values()].filter(member => !member.roles.includes(state.selectedRole));
